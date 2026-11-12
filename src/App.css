@@ -1,0 +1,278 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ------------------------ Main calls page ----------------------------*/
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: #F5F6FA;
+  color: #1F2937;
+}
+
+.header {
+  color: rgb(255, 255, 255);
+  background: rgb(30, 41, 59);
+  padding: 16px 24px;
+}
+
+.header h1 {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0px;
+}
+
+.main {
+  max-width: 800px;
+  margin: 0px auto;
+  padding: 24px;
+}
+
+.main h2 {
+  color: rgb(51, 65, 85);
+  font-size: 18px;
+  margin: 0px 0px 16px;
+}
+
+ul {
+  flex-direction: column;
+  display: flex;
+  gap: 8px;
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+
+.call-item {
+  cursor: pointer;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  background: rgb(255, 255, 255);
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(226, 232, 240);
+  border-image: none;
+  border-radius: 8px;
+  padding: 12px 16px;
+  transition: background 0.15s;
+}
+
+.call-item:hover {
+  background-color: #f6f6f9;
+}
+
+.call-info {
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  gap: 5px;
+  align-items: start;
+}
+
+.call-direction {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.call-direction p {
+  margin: 0;
+}
+
+.inbound {
+  color: blue;
+}
+
+.outbound {
+  color: purple;
+}
+
+.answered {
+  background-color: rgb(211, 249, 211);
+  color: #098a38;
+  border-radius: 15px;
+  padding: 2px 10px;
+  font-size: 12px;
+}
+
+.missed {
+  background-color: rgb(255, 198, 198);
+  color: #b10c0c;
+  border-radius: 15px;
+  padding: 2px 10px;
+  font-size: 12px;
+}
+
+.voicemail {
+  background-color: #fef3c7;
+  color: #b45309;
+  border-radius: 15px;
+  padding: 2px 10px;
+  font-size: 12px;
+}
+
+.call-from-to {
+  align-items: center;
+  font-size: 14px;
+  display: flex;
+}
+
+.fa-arrow-right-long {
+  margin: 0 20px;
+}
+
+.date-info {
+  color: #64748b;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  min-width: 140px;
+  font-size: 13px;
+  display: flex;
+}
+
+.call-btn button {
+  cursor: pointer;
+  color: #64748b;
+  background: 0 0;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 13px;
+  transition: background 0.15s;
+}
+
+.call-btn button:hover {
+  background-color: rgb(251, 198, 198);
+  border-color: rgb(193, 96, 96);
+  color: rgb(158, 79, 79);
+}
+
+/* ------------------------ Details page ----------------------------*/
+
+.call-details {
+  max-width: 600px;
+}
+
+.back-btn {
+  cursor: pointer;
+  color: #475569;
+  background: 0 0;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  padding: 8px 16px;
+  font-size: 14px;
+  transition: background 0.15s;
+}
+
+.back-btn:hover {
+  background-color: rgb(215, 215, 215);
+  border-color: rgb(117, 116, 116);
+  color: rgb(63, 63, 63);
+}
+
+.detail-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.detail-grid {
+  flex-direction: column;
+  gap: 12px;
+  display: flex;
+}
+
+.detail-row {
+  border-bottom: 1px solid #f1f5f9;
+  justify-content: space-between;
+  padding: 8px 0;
+  display: flex;
+}
+
+.detail-label {
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.detail-value {
+  font-size: 14px;
+}
+
+.call-notes {
+  margin-top: 24px;
+}
+
+.call-notes h3 {
+  color: #1e293b;
+  margin: 0 0 12px;
+  font-size: 16px;
+}
+
+.call-notes ul {
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+}
+
+.call-notes li {
+  color: #334155;
+  background: #f8fafc;
+  border-left: 3px solid #2563eb;
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 14px;
+}
+
+.no-notes {
+  color: #94a3b8;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+/* ------------------------ Loading & Errors page ----------------------------*/
+
+.loading {
+  text-align: center;
+}
+
+.error-frame {
+  text-align: center;
+}
+
+.status-code {
+  font-size: 24px;
+  font-weight: bold;margin: 0;
+  color: rgb(30, 41, 59);
+}
+
+.error-btn {
+  cursor: pointer;
+  color: #f2f2f2;
+  background: rgb(30, 41, 59);
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 14px;
+  transition: background 0.15s;
+}
+
+.error-btn:hover {
+  background-color: rgb(9, 43, 108);
+  border-color: #e2e8f0;
+  color: #f2f2f2;
+}
+
+/* ------------------------ Empty page after calls archived ----------------------------*/
+
+.no-calls-msg {
+  text-align: center;
+}
