@@ -9,9 +9,7 @@ function CallItem({ call, onSelect, onArchive }) {
 
           {call.direction}
         </div>
-        <div
-          className={`call-type ${call.call_type === "answered" ? "answered" : call.call_type === "missed" ? "missed" : "voicemail"}`}
-        >
+        <div className={`call-type ${call.call_type}`}>
           {call.call_type}
         </div>
       </div>

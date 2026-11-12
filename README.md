@@ -1,16 +1,66 @@
-# React + Vite
+# Call Center Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based Call Center Dashboard for viewing, managing, and archiving phone calls through a REST API.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Activity Feed:** Displays the available calls.
+- **Call Details:** View detailed information about an individual call.
+- **Archive Calls:** Archive calls through the API.
+- **Dynamic UI:** Automatically updates the call list after a successful archive operation.
+- **Loading States:** Displays loading feedback while API requests are being processed.
+- **Error Handling:** Displays error messages and provides retry functionality when requests fail.
+- **Empty State:** Displays a message when there are no active calls available.
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React
+- JavaScript (ES6+)
+- HTML5
+- CSS3
+- Vite
+- REST API
+- Fetch API
 
-## Expanding the ESLint configuration
+### Installation
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. Clone the repository:
+
+- git clone YOUR_REPOSITORY_URL
+
+2. Navigate to the project directory:
+
+- cd call-management-dashboard
+
+3. Install dependencies:
+
+- npm install
+
+4. Start the development server:
+
+- npm run dev
+
+5. Open the local URL provided by Vite in your browser.
+
+## API Integration
+
+The application communicates with a REST API to retrieve and manage call data.
+
+**API Base URL:**
+
+https://call-center-mu.vercel.app
+
+**Available operations:**
+
+| Method | Endpoint            | Description              |
+| GET    | `/calls`            | Retrieve calls           |
+| GET    | `/calls/:id`        | Retrieve a specific call |
+| PATCH  | `/calls/:id/archive`| Archive a call           |
+
+Requests require the following custom header:
+
+X-User-Id: 'your name'
+
+## Development
+
+This project was built to practice React development, component-based architecture, state management, API integration, and asynchronous JavaScript.

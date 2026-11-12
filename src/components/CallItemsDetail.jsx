@@ -8,7 +8,7 @@ function CallItemsDetail({ call, onBack }) {
           <div className="detail-row">
             <span className="detail-label">Direction</span>
             <span className={`detail-value ${call.direction === "Inbound" ? "inbound" : "outbound"}`}>
-              {call.direction === "Inbound" ? "Ιnbound" : "Οutbound"}
+              {call.direction === "Inbound" ? "Inbound" : "Outbound"}
             </span>
           </div>
           <div className="detail-row">
@@ -21,9 +21,7 @@ function CallItemsDetail({ call, onBack }) {
           </div>
           <div className="detail-row">
             <span className="detail-label">Type</span>
-            <span className={`detail-value ${call.call_type === "answered" ? "answered" : call.call_type === "missed" ? "missed" : "voicemail"}`}>
-                {call.call_type === "answered" ? "answered" : call.call_type === "missed" ? "missed" : "voicemail"}
-            </span>
+            <span className={`detail-value ${call.call_type}`}>{call.call_type}</span>
           </div>
           <div className="detail-row">
             <span className="detail-label">Duration</span>
@@ -35,7 +33,7 @@ function CallItemsDetail({ call, onBack }) {
           </div>
           <div className="detail-row">
             <span className="detail-label">Archived</span>
-            <span className={`detail-value ${call.is_archived === false ? "No" : "Yes"}`}>{call.is_archived === false ? "No" : "Yes"}</span>
+            <span className={`detail-value ${call.is_archived ? "Yes" : "No"}`}>{call.is_archived ? "Yes" : "No"}</span>
           </div>
         </div>
         <div className="call-notes">
