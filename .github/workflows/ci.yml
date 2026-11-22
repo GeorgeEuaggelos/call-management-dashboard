@@ -10,6 +10,9 @@ jobs:
   checks:
     runs-on: ubuntu-latest
 
+    env:
+      VITE_API_URL: https://call-center-mu.vercel.app
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -30,5 +33,3 @@ jobs:
 
       - name: Build application
         run: npm run build
-        env:
-          VITE_API_URL: https://call-center-mu.vercel.app
