@@ -1,17 +1,17 @@
 import CallItem from './CallItem.jsx'
 
-function CallsList({onSelect, calls, onArchive}) {
+function CallsList({ onSelect, calls, onArchive, archivingId }) {
     const activeCalls = calls.filter(call => !call.is_archived);
     
     return (
         activeCalls.length === 0 ? (
             <p className='no-calls-msg'>All calls have been archived.</p>
         ) : (
-        <ul>
-            {activeCalls.map(call => (
-                <CallItem onSelect={onSelect} key={call.id} call={call} onArchive={onArchive} />
-            ))}
-        </ul>
+            <ul>
+                {activeCalls.map(call => (
+                    <CallItem onSelect={onSelect} key={call.id} call={call} onArchive={onArchive} archivingId={archivingId} />
+                ))}
+            </ul>
         )
     );
 }

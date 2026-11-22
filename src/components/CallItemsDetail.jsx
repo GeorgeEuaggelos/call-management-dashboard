@@ -8,7 +8,7 @@ function CallItemsDetail({ call, onBack }) {
           <div className="detail-row">
             <span className="detail-label">Direction</span>
             <span className={`detail-value ${call.direction === "Inbound" ? "inbound" : "outbound"}`}>
-              {call.direction === "Inbound" ? "Inbound" : "Outbound"}
+              {call.direction}
             </span>
           </div>
           <div className="detail-row">
@@ -33,7 +33,7 @@ function CallItemsDetail({ call, onBack }) {
           </div>
           <div className="detail-row">
             <span className="detail-label">Archived</span>
-            <span className={`detail-value ${call.is_archived ? "Yes" : "No"}`}>{call.is_archived ? "Yes" : "No"}</span>
+            <span className={`detail-value ${call.is_archived ? "is-archived" : "not-archived"}`}>{call.is_archived ? "Yes" : "No"}</span>
           </div>
         </div>
         <div className="call-notes">

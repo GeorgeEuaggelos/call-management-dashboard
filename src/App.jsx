@@ -10,101 +10,122 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [detail, setDetail] = useState(null);
-  const [errorSource, setErrorSource] = useState(null); //When errors occur, I encounter different error sources and use the corresponding back or refresh buttons
+  const [archiveError, setArchiveError] = useState(null);
+  const [detailLoading, setDetailLoading] = useState(false);
+  const [detailError, setDetailError] = useState(null);
+  const [archivingId, setArchivingId] = useState(null);
 
-  async function fetchCalls() {
-    setLoading(true);
-    setError(null);
-    setErrorSource(null);
-
+  async function loadCalls() {
     try {
       const data = await getCalls();
       setCalls(data);
     } catch (error) {
       setError(error);
-      setErrorSource('calls');
-      console.error("Error:", error);
     } finally {
       setLoading(false);
     }
   }
 
-  function handleRetry() {
-    fetchCalls();
+  async function fetchCalls() {
+    setLoading(true);
+    setError(null);
+
+    await loadCalls();
   }
 
   useEffect(() => {
-    fetchCalls();
+    getCalls()
+      .then(data => {
+        setCalls(data);
+      })
+      .catch(error => {
+        setError(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
   
   async function handleClickedItem(call) {
-    setLoading(true);
-    setError(null);
-    setErrorSource(null);
+    setDetail(null);
+    setDetailLoading(true);
+    setDetailError(null);
 
     try {
       const specificCall = await getCallById(call.id);
       setDetail(specificCall);
     } catch (error) {
-      setError(error);
-      setErrorSource('detail');
-      console.error("Error:", error);
+      setDetailError(error);
     } finally {
-      setLoading(false);
+      setDetailLoading(false);
     }
   }
 
   function handleBackToCalls() {
     setDetail(null);
-    setError(null);
+    setDetailError(null);
   }
 
   async function handleArchive(id) {
-    setLoading(true);
-    setError(null);
-    setErrorSource(null);
+    setArchiveError(null);
+    setArchivingId(id);
 
     try {
-      await archiveCall(id);
-      setCalls(prevCalls => {
-        return prevCalls.map(call => {
-          if (call.id === id) {
-            return {...call, is_archived: true};
-          } else {
-            return call;
-          }
-        });
-      });
+      const updatedCall = await archiveCall(id);
+
+      setCalls(prevCalls =>
+        prevCalls.map(call =>
+          call.id === id ? updatedCall : call
+        )
+      );
     } catch (error) {
-      setError(error);
-      setErrorSource('archive');
-      console.error("Error:", error);
+      setArchiveError({ id, error });
     } finally {
-      setLoading(false);
+      setArchivingId(null);
     }
   }
 
-  if (loading || error) {
-    return <RequestStatus loading={loading} error={error} onBack={handleBackToCalls} errorSource={errorSource} onRetry={handleRetry}/>;
-  } else {
+  if (detailLoading || detailError) {
     return (
-      <>
-        <div className='header'>
-          <h1>Call Center</h1>
-        </div>
-        <div className='main'>
-          {detail === null ? (
-            <>
-              <h2>Activity Feed</h2>
-              <CallsList onSelect={handleClickedItem} calls={calls} onArchive={handleArchive} />
-            </>
-          ) : (
-            <CallItemsDetail call={detail} onBack={handleBackToCalls} />
-          )}
-        </div>
-      </>
-    )
+      <RequestStatus
+        loading={detailLoading}
+        error={detailError}
+        onBack={handleBackToCalls}
+      />
+    );
   }
+
+  if (loading || error) {
+    return <RequestStatus loading={loading} error={error} onRetry={fetchCalls}/>;
+  } 
+  
+  return (
+    <>
+      <div className='header'>
+        <h1>Call Center</h1>
+      </div>
+      <div className='main'>
+        {detail === null ? (
+          <>
+            {archiveError && (
+              <div className='error-banner'>
+                <p className="archive-error">
+                  {archiveError.error.message}
+                </p>
+                <button onClick={() => setArchiveError(null)}>
+                  Dismiss
+                </button>
+              </div>
+            )}
+            <h2>Activity Feed</h2>
+            <CallsList onSelect={handleClickedItem} calls={calls} onArchive={handleArchive} archivingId={archivingId} />
+          </>
+        ) : (
+          <CallItemsDetail call={detail} onBack={handleBackToCalls} />
+        )}
+      </div>
+    </>
+  );
 }
 
 export default App;

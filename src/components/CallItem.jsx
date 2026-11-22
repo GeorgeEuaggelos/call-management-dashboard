@@ -1,4 +1,4 @@
-function CallItem({ call, onSelect, onArchive }) {
+function CallItem({ call, onSelect, onArchive, archivingId }) {
   return (
     <li className="call-item" onClick={() => onSelect(call)}>
       <div className="call-info">
@@ -29,6 +29,7 @@ function CallItem({ call, onSelect, onArchive }) {
 
       <div className="call-btn">
         <button
+          disabled={archivingId === call.id}
           onClick={(e) => {
             e.stopPropagation();
             onArchive(call.id);
